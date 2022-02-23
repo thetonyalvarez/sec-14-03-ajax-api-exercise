@@ -130,12 +130,18 @@ const populateEpisodes = async (episodes) => {
 	$("#episodes-area").show();
 };
 
+// when a user clicks on the "Episodes" button...
 $("#shows-list").on(
 	"click",
 	".show-episodes",
 	(handleEpisodeClick = async (e) => {
+		// grab the show's id found in the closest data attribute...
 		let showId = e.target.closest(".Show").dataset.showId;
+
+		// ... and then pass the show id to the getEpisodes function
 		let episodes = await getEpisodes(showId);
+
+		// Populate all episodes from the return of getEpisodes()
 		populateEpisodes(episodes);
 	})
 );
